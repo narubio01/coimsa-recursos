@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Hoja de Ruta Tecnológica para PYMES</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 320px;
+            width: 100%;
+            max-width: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+                 max-width: 600px;
+            }
+        }
+        .flowchart-step {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .flowchart-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .flowchart-arrow {
+            color: #8BC8FF; 
+            font-size: 2.5rem;
+            line-height: 1;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#004FF9] tracking-tight">Impulsando el Futuro</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Una hoja de ruta tecnológica es el mapa que guía a las PYMES hacia la eficiencia, el crecimiento y la innovación en la era digital.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0085FF] mb-4 text-center">El Desafío Digital de las PYMES</h2>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-full md:w-1/2">
+                        <p class="text-base text-gray-700 mb-4">Muchas pequeñas y medianas empresas operan con limitaciones tecnológicas que frenan su potencial. Sin una estrategia clara, enfrentan problemas de eficiencia, seguridad y competitividad. La falta de un plan definido es una de las barreras más significativas para la transformación digital.</p>
+                         <p class="text-base text-gray-700">Visualizar la proporción de empresas sin una estrategia clara nos ayuda a entender la magnitud del desafío y la oportunidad de mejora.</p>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <div class="chart-container mx-auto">
+                            <canvas id="digitalStrategyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-[#004FF9] text-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-center">El Proceso de Transformación en 5 Pasos</h2>
+                <p class="text-center max-w-3xl mx-auto mb-8 text-blue-100">Construir una hoja de ruta tecnológica es un proceso estratégico. Siguiendo estos pasos, una organización puede pasar de un estado reactivo a uno proactivo, alineando la tecnología con sus objetivos de negocio.</p>
+                <div class="flex flex-col items-center">
+                    <div class="flowchart-step bg-white text-gray-800 rounded-lg p-4 w-full max-w-md text-center mb-4">
+                        <span class="text-2xl font-bold text-[#004FF9]">Paso 1: Diagnóstico Actual (AS-IS)</span>
+                        <p class="text-sm">Evaluar infraestructura, sistemas, procesos y seguridad para entender el punto de partida.</p>
+                    </div>
+                    <div class="flowchart-arrow">&#x2193;</div>
+                    <div class="flowchart-step bg-white text-gray-800 rounded-lg p-4 w-full max-w-md text-center mb-4">
+                        <span class="text-2xl font-bold text-[#004FF9]">Paso 2: Objetivo Deseado (TO-BE)</span>
+                        <p class="text-sm">Definir el estado tecnológico futuro y las capacidades digitales a fortalecer.</p>
+                    </div>
+                    <div class="flowchart-arrow">&#x2193;</div>
+                    <div class="flowchart-step bg-white text-gray-800 rounded-lg p-4 w-full max-w-md text-center mb-4">
+                        <span class="text-2xl font-bold text-[#004FF9]">Paso 3: Priorización de Iniciativas</span>
+                        <p class="text-sm">Identificar y evaluar proyectos clave según su impacto estratégico y operativo.</p>
+                    </div>
+                    <div class="flowchart-arrow">&#x2193;</div>
+                    <div class="flowchart-step bg-white text-gray-800 rounded-lg p-4 w-full max-w-md text-center mb-4">
+                        <span class="text-2xl font-bold text-[#004FF9]">Paso 4: Hoja de Ruta por Fases</span>
+                        <p class="text-sm">Organizar los proyectos en una línea de tiempo con plazos realistas.</p>
+                    </div>
+                     <div class="flowchart-arrow">&#x2193;</div>
+                    <div class="flowchart-step bg-white text-gray-800 rounded-lg p-4 w-full max-w-md text-center">
+                        <span class="text-2xl font-bold text-[#004FF9]">Paso 5: Seguimiento y Evaluación</span>
+                        <p class="text-sm">Definir KPIs y mecanismos de control para medir el avance y ajustar el plan.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0085FF] mb-2 text-center">Áreas Clave de Diagnóstico</h2>
+                 <p class="text-center text-gray-600 mb-4">El primer paso es un análisis 360° del estado tecnológico. Un radar de madurez nos permite visualizar rápidamente las fortalezas y debilidades en las áreas más críticas de la organización.</p>
+                <div class="chart-container mx-auto">
+                    <canvas id="maturityRadarChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0085FF] mb-2 text-center">Priorización de Iniciativas</h2>
+                 <p class="text-center text-gray-600 mb-4">No todos los proyectos tienen el mismo impacto. Es crucial priorizar aquellas iniciativas que ofrecen mayor valor estratégico, financiero y operativo para maximizar el retorno de la inversión.</p>
+                <div class="chart-container mx-auto">
+                    <canvas id="initiativesBarChart"></canvas>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0085FF] mb-6 text-center">Midiendo el Éxito: KPIs Clave</h2>
+                <p class="text-center max-w-3xl mx-auto mb-8 text-gray-600">Lo que no se mide, no se puede mejorar. El éxito de la hoja de ruta se refleja en indicadores concretos que demuestran el impacto positivo en el negocio.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <span class="text-5xl font-black text-[#0085FF]">15%</span>
+                        <p class="mt-2 font-bold">Reducción de Costos Operativos</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <span class="text-5xl font-black text-[#0085FF]">+25%</span>
+                        <p class="mt-2 font-bold">Aumento de Productividad</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                         <span class="text-5xl font-black text-[#0085FF]">99.8%</span>
+                        <p class="mt-2 font-bold">Disponibilidad de Servicios (Uptime)</p>
+                    </div>
+                     <div class="bg-blue-50 p-6 rounded-lg">
+                        <span class="text-5xl font-black text-[#0085FF]">-70%</span>
+                        <p class="mt-2 font-bold">Disminución de Incidentes de Seguridad</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        
+        <footer class="text-center mt-12 py-8 border-t border-gray-300">
+             <h2 class="text-3xl font-bold text-[#004FF9]">¿Listo para Trazar tu Propio Camino?</h2>
+             <p class="mt-4 text-gray-600 max-w-2xl mx-auto">En COIMSA, te acompañamos en cada paso del proceso, desde el diagnóstico hasta la implementación. Convierte la tecnología en el motor de tu crecimiento.</p>
+             <a href="#" class="mt-6 inline-block bg-[#F58233] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-orange-600 transition-colors">Contáctanos para una Asesoría</a>
+             <p class="mt-8 text-sm text-gray-500">&copy; 2025 COIMSA. Todos los derechos reservados.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        const wrapLabel = (label, maxWidth) => {
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const CHART_COLORS = {
+            blue: '#0085FF',
+            lightBlue: '#8BC8FF',
+            paleBlue: '#C4E2FF',
+            orange: '#F58233',
+            gray: '#E5E7EB'
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#4b5563',
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: '#1f2937',
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                    titleFont: { family: "'Inter', sans-serif", weight: 'bold', size: 14 },
+                    bodyFont: { family: "'Inter', sans-serif" }
+                }
+            }
+        };
+
+        const digitalStrategyCtx = document.getElementById('digitalStrategyChart').getContext('2d');
+        new Chart(digitalStrategyCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['PYMES sin Estrategia Digital Clara', 'PYMES con Estrategia Digital'],
+                datasets: [{
+                    label: 'Distribución de Estrategia Digital',
+                    data: [68, 32],
+                    backgroundColor: [CHART_COLORS.orange, CHART_COLORS.blue],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            },
+            options: { ...defaultChartOptions }
+        });
+
+        const maturityRadarCtx = document.getElementById('maturityRadarChart').getContext('2d');
+        new Chart(maturityRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Infraestructura', 'Aplicaciones y Sistemas', 'Procesos Digitales', 'Seguridad de la Información', 'Cultura Tecnológica'],
+                datasets: [{
+                    label: 'Nivel de Madurez Actual (AS-IS)',
+                    data: [4, 5, 3, 3, 6],
+                    backgroundColor: 'rgba(0, 133, 255, 0.2)',
+                    borderColor: CHART_COLORS.blue,
+                    pointBackgroundColor: CHART_COLORS.blue,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: CHART_COLORS.blue,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    r: {
+                        angleLines: { color: '#d1d5db' },
+                        grid: { color: '#e5e7eb' },
+                        pointLabels: {
+                            color: '#374151',
+                            font: { size: 12, weight: 'bold', family: "'Inter', sans-serif" }
+                        },
+                        ticks: {
+                            color: '#6b7280',
+                            backdropColor: '#ffffff',
+                            stepSize: 2,
+                            font: { family: "'Inter', sans-serif" }
+                        },
+                        min: 0,
+                        max: 10
+                    }
+                }
+            }
+        });
+
+        const initiativesBarCtx = document.getElementById('initiativesBarChart').getContext('2d');
+        new Chart(initiativesBarCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabel('Implementar Nuevo Sistema ERP', 16), 
+                    wrapLabel('Migración de Servicios a la Nube', 16), 
+                    wrapLabel('Rediseño del Proceso de Ventas', 16), 
+                    wrapLabel('Política de Ciberseguridad y Backup', 16),
+                    wrapLabel('Capacitación Digital al Equipo', 16)
+                ],
+                datasets: [{
+                    label: 'Impacto Estratégico (Puntaje)',
+                    data: [9.2, 8.8, 8.1, 7.5, 6.9],
+                    backgroundColor: [
+                        CHART_COLORS.blue,
+                        CHART_COLORS.lightBlue,
+                        CHART_COLORS.lightBlue,
+                        CHART_COLORS.paleBlue,
+                        CHART_COLORS.paleBlue
+                    ],
+                    borderRadius: 4,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            drawOnChartArea: false
+                        },
+                         ticks: {
+                             color: '#6b7280',
+                             font: { family: "'Inter', sans-serif" }
+                         }
+                    },
+                    y: {
+                        grid: {
+                            display: false
+                        },
+                         ticks: {
+                             color: '#374151',
+                             font: { family: "'Inter', sans-serif", weight: 'bold' }
+                         }
+                    }
+                },
+                 plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                       callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
