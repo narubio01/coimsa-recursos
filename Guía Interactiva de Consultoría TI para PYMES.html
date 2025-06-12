@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva de Consultoría TI para PYMES</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Official Website Palette - Orange exclusively for buttons/interactive highlights. -->
+    <!-- Application Structure Plan: The SPA is designed as a thematic, multi-section interactive dashboard. It starts with a high-level hero section with key stats to engage the user. The core of the application is a central navigator allowing users to explore the three main pillars: "Estrategia de TI", "Transformación Digital", and "Hoja de Ruta Tecnológica". Selecting a pillar dynamically updates a content area below with interactive elements like diagrams, charts, and accordions, transforming dense text into digestible modules. This non-linear structure prioritizes user exploration over the report's linear format. It is followed by dedicated sections on the consultant's role, an interactive case study explorer with filtering, and a final summary of key recommendations. This design facilitates a user-centric journey, allowing them to dive into specific areas of interest efficiently. -->
+    <!-- Visualization & Content Choices: Key stats are presented as animated counters for immediate impact (Goal: Inform). Core concepts from the report are visualized using interactive diagrams and cards made with HTML/CSS to break down complex information (Goal: Organize). The "Challenges of Digital Transformation" are displayed in an interactive Chart.js bar chart for easy comparison (Goal: Compare). The static case study table is transformed into a filterable card gallery for enhanced exploration (Goal: Organize). Step-by-step guides are presented in accordions to manage information complexity (Goal: Organize). All choices aim to increase engagement and understanding over passive reading. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f4; /* Gris Claro */
+            color: #0f213b; /* Azul Oscuro - Texto principal y encabezados */
+        }
+        .bg-main-light { background-color: #f4f4f4; } /* Gris Claro */
+        .bg-card-white { background-color: #FFFFFF; } /* Blanco */
+        .bg-dark-section { background-color: #4f5d75; } /* Gris Oscuro - Para fondos de sección más oscuros como el footer o acordeones */
+        
+        .text-heading { color: #0f213b; } /* Azul Oscuro - Para títulos y texto importante */
+        .text-sub-content { color: #4f5d75; } /* Gris Oscuro - Para subtítulos y texto descriptivo */
+        
+        .bg-button-orange { background-color: #f47c47; } /* Naranja - Exclusivo para fondos de botones */
+        .border-button-orange { border-color: #f47c47; } /* Naranja - Exclusivo para bordes de botones/resaltados */
+
+        .nav-button {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            color: #0f213b; /* Azul Oscuro */
+        }
+        .nav-button.active {
+            border-bottom-color: #f47c47; /* Naranja */
+            color: #f47c47; /* Naranja */
+            transform: translateY(-2px);
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 40vh;
+            width: 100%;
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body class="bg-main-light text-heading">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Header Section -->
+        <header class="text-center py-12 bg-dark-section text-white rounded-lg shadow-lg">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Guía Interactiva de Consultoría TI para PYMES</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto">Una exploración de la Estrategia de TI, la Transformación Digital y la Hoja de Ruta Tecnológica para impulsar el éxito de las Pequeñas y Medianas Empresas.</p>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="bg-card-white p-6 rounded-lg shadow-md">
+                    <p class="text-3xl font-bold text-heading" id="stat-cost">-20%</p>
+                    <p class="mt-2 text-sub-content">En Costos Operativos</p>
+                </div>
+                <div class="bg-card-white p-6 rounded-lg shadow-md">
+                    <p class="text-3xl font-bold text-heading" id="stat-satisfaction">+15%</p>
+                    <p class="mt-2 text-sub-content">En Satisfacción del Cliente</p>
+                </div>
+                <div class="bg-card-white p-6 rounded-lg shadow-md">
+                    <p class="text-3xl font-bold text-heading" id="stat-cybersecurity">67%</p>
+                    <p class="mt-2 text-sub-content">De PYMES sufrieron un ciberataque</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="sticky top-0 bg-main-light z-10 py-4 mb-12 border-b-2 border-dark-section">
+            <div id="main-nav" class="flex justify-center items-center space-x-4 md:space-x-8">
+                <button data-target="estrategia" class="nav-button text-base md:text-lg font-bold p-2 active">Estrategia de TI</button>
+                <button data-target="transformacion" class="nav-button text-base md:text-lg font-bold p-2">Transformación Digital</button>
+                <button data-target="hoja-ruta" class="nav-button text-base md:text-lg font-bold p-2">Hoja de Ruta Tecnológica</button>
+            </div>
+        </nav>
+
+        <!-- Dynamic Content Area -->
+        <main id="content-area">
+            <!-- Estrategia de TI Section -->
+            <section id="estrategia" class="content-section active">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-heading mb-3">Construyendo el Futuro: La Estrategia de TI</h2>
+                    <p class="max-w-3xl mx-auto text-sub-content">Esta sección desglosa cómo desarrollar un plan integral para alinear la tecnología con los objetivos de negocio. Una estrategia de TI bien definida no es un documento estático, sino una guía viva que asegura que cada inversión tecnológica impulse la eficiencia, la productividad y el crecimiento competitivo de la PYME.</p>
+                </div>
+
+                <div class="bg-card-white p-8 rounded-lg shadow-lg mb-12">
+                     <h3 class="text-2xl font-bold text-center mb-6 text-heading">Componentes Clave de una Estrategia Exitosa</h3>
+                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center" id="it-strategy-components">
+                        <!-- Components will be injected here by JS -->
+                     </div>
+                </div>
+
+                <div class="bg-card-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-heading">Guía para el Consultor: Desarrollo de la Estrategia</h3>
+                    <div id="strategy-guide-accordion" class="space-y-4">
+                        <!-- Accordion items will be injected here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transformación Digital Section -->
+            <section id="transformacion" class="content-section">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-heading mb-3">Reinventando el Negocio: La Transformación Digital</h2>
+                    <p class="max-w-3xl mx-auto text-sub-content">Aquí exploramos el proceso de integrar tecnologías digitales en todas las áreas de la empresa. La transformación digital es más que adoptar nuevas herramientas; es un cambio cultural y operativo que redefine cómo se opera y se entrega valor a los clientes, enfocándose en la experiencia del usuario, la eficiencia y la innovación.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="bg-card-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-center mb-6 text-heading">Pilares de la Transformación</h3>
+                        <div id="digital-transformation-pillars" class="grid grid-cols-2 gap-4">
+                             <!-- Pillars will be injected here -->
+                        </div>
+                    </div>
+                     <div class="bg-card-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-center mb-6 text-heading">Principales Desafíos para PYMES</h3>
+                        <div class="chart-container">
+                             <canvas id="challengesChart"></canvas>
+                        </div>
+                         <p class="text-center text-sm text-sub-content mt-2">Pase el cursor sobre las barras para más detalles.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Hoja de Ruta Tecnológica Section -->
+            <section id="hoja-ruta" class="content-section">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-heading mb-3">El Plan de Acción: Hoja de Ruta Tecnológica</h2>
+                    <p class="max-w-3xl mx-auto text-sub-content">Esta sección detalla cómo crear una hoja de ruta, el "mapa del sendero" que traduce la estrategia en acciones concretas. Sirve para alinear recursos, priorizar inversiones y comunicar la dirección tecnológica a toda la organización, asegurando una implementación coherente y eficiente.</p>
+                </div>
+                <div class="bg-card-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-center mb-8 text-heading">Proceso de Creación de la Hoja de Ruta</h3>
+                    <div id="roadmap-process" class="relative border-l-2 border-dark-section ml-4 md:ml-0 md:border-l-0 md:border-t-2 md:w-full md:flex">
+                        <!-- Roadmap steps will be injected here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- El Rol del Consultor Section -->
+        <section class="mt-20 py-16 bg-card-white rounded-lg">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-heading mb-3">El Socio Estratégico: Rol de la Consultoría TI</h2>
+                <p class="max-w-3xl mx-auto text-sub-content">La consultoría TI es un catalizador para las PYMES, proporcionando la experiencia y objetividad para superar obstáculos. Esta sección explora cómo un consultor aborda los desafíos más comunes, desde la falta de presupuesto hasta la resistencia al cambio, convirtiéndose en un puente hacia la competitividad digital.</p>
+            </div>
+            <div id="consultant-role" class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Consultant roles will be injected here -->
+            </div>
+        </section>
+
+
+        <!-- Casos de Éxito Section -->
+        <section class="mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-heading mb-3">Casos de Éxito: La Tecnología en Acción</h2>
+                <p class="max-w-3xl mx-auto text-sub-content">Vea ejemplos prácticos de cómo las PYMES han aprovechado la tecnología para crecer y competir. Filtre por sector para encontrar las historias más relevantes para su negocio y descubra los resultados tangibles que una estrategia bien ejecutada puede generar.</p>
+            </div>
+            <div class="flex justify-center flex-wrap gap-2 mb-8" id="case-study-filters">
+                <!-- Filters will be injected here -->
+            </div>
+            <div id="case-studies-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Case studies will be injected here -->
+            </div>
+        </section>
+
+        <!-- Recomendaciones Section -->
+        <section class="mt-20 py-16 bg-card-white rounded-lg shadow-lg">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-heading mb-3">Recomendaciones Clave</h2>
+                 <p class="max-w-3xl mx-auto text-sub-content">Para finalizar, aquí se resumen los pasos más importantes que tanto las PYMES como los consultores deben considerar para asegurar un viaje exitoso hacia la digitalización. Estas recomendaciones son la esencia de la guía, diseñadas para inspirar acción y guiar la toma de decisiones estratégicas.</p>
+            </div>
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div id="recommendations-smes">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-heading">Para PYMES</h3>
+                    <ul class="space-y-4"></ul>
+                </div>
+                <div id="recommendations-consultants">
+                     <h3 class="text-2xl font-bold mb-4 text-center text-heading">Para Consultores TI</h3>
+                     <ul class="space-y-4"></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="text-center py-12 mt-20 bg-card-white rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-heading mb-4">¿Listo para Trazar tu Propio Camino?</h2>
+            <p class="max-w-3xl mx-auto text-sub-content mb-8">En COIMSA, te acompañamos en cada paso del proceso, desde el diagnóstico hasta la implementación. Convierte la tecnología en el motor de tu crecimiento.</p>
+            <button onclick="window.location.href='https://www.coimsa.net/contacto'" class="bg-button-orange text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-orange-600 transition duration-300">
+                Contáctanos para una Asesoría
+            </button>
+        </section>
+
+    </div>
+
+    <footer class="text-center py-6 mt-12 border-t border-dark-section">
+        <p class="text-sub-content">&copy; 2025 Guía Interactiva de Consultoría TI. Creado a partir de investigación sobre Estrategia de TI para PYMES.</p>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const data = {
+        itStrategyComponents: [
+            { name: "Visión Clara", icon: "🎯", description: "Definir hacia dónde se dirige la organización con la TI." },
+            { name: "Alineación de Negocio", icon: "🔗", description: "Asegurar que cada iniciativa de TI potencie las metas empresariales." },
+            { name: "Análisis de Contexto", icon: "🔍", description: "Evaluar factores internos y externos, como un análisis DAFO." },
+            { name: "Medidas y KPIs", icon: "📊", description: "Establecer indicadores para monitorear el progreso y el éxito." },
+            { name: "Evaluación Financiera", icon: "💰", description: "Analizar el ROI y los costos de las iniciativas tecnológicas." },
+            { name: "Ventaja Competitiva", icon: "🏆", description: "Usar la TI para diferenciar a la empresa en el mercado." }
+        ],
+        strategyGuide: [
+            { title: "1. Diagnóstico Inicial y Alineación", content: "Evaluar la infraestructura de TI actual (hardware, software, seguridad) y realizar un análisis DAFO. Organizar talleres con partes interesadas para comprender a fondo los objetivos de negocio y cómo la tecnología puede ser un catalizador." },
+            { title: "2. Definición de Visión, Metas y KPIs", content: "Establecer una visión clara del estado futuro deseado. Definir objetivos de TI específicos, medibles, alcanzables, relevantes y con plazos (SMART). Desarrollar KPIs cuantificables para cada objetivo para medir el progreso." },
+            { title: "3. Priorización de Iniciativas y Recursos", content: "Priorizar las iniciativas de TI basándose en la urgencia, el impacto en el negocio y la viabilidad. Calcular de manera realista el tiempo y los recursos (presupuesto, personal) necesarios. Recomendar soluciones escalables como las basadas en la nube." },
+            { title: "4. Comunicación y Compromiso", content: "Comunicar la estrategia de forma clara y transparente a todas las partes interesadas. Fomentar el compromiso y la participación activa de los empleados, cuya adopción es vital para el éxito de cualquier iniciativa." }
+        ],
+        digitalTransformationPillars: [
+            { name: "Experiencia del Cliente", icon: "❤️" },
+            { name: "Personas", icon: "👥" },
+            { name: "Cambio", icon: "🔄" },
+            { name: "Innovación", icon: "💡" },
+            { name: "Liderazgo", icon: "👑" },
+            { name: "Cultura", icon: "🌱" },
+            { name: "Tecnología", icon: "💻" },
+            { name: "Operaciones", icon: "⚙️" }
+        ],
+        smeChallenges: {
+            labels: ["Resistencia al Cambio", "Falta de Habilidades", "Presupuesto Limitado", "Ciberseguridad", "Integración Compleja", "Falta de ROI Claro"],
+            data: [90, 85, 80, 75, 70, 65],
+            descriptions: [
+                "Dificultad de empleados y clientes para adoptar nuevas tecnologías y procesos.",
+                "Carencia de personal con la experiencia digital necesaria para implementar y gestionar nuevas herramientas.",
+                "Recursos financieros limitados para invertir en tecnologías avanzadas y capacitación.",
+                "Riesgos crecientes de ciberataques que pueden ser devastadores para la reputación y las finanzas.",
+                "Dificultad para integrar nuevas soluciones con sistemas heredados dispares, causando ineficiencias.",
+                "Incapacidad para medir claramente el retorno de la inversión, lo que desincentiva el compromiso a largo plazo."
+            ]
+        },
+        roadmapProcess: [
+            { name: "1. Definir Objetivos", description: "Comprender a fondo los objetivos de negocio a largo plazo y auditar la tecnología actual." },
+            { name: "2. Identificar Brechas", description: "Recopilar información de partes interesadas para identificar discrepancias entre el estado actual y el futuro deseado." },
+            { name: "3. Establecer Prioridades", description: "Definir y priorizar objetivos tecnológicos basados en impacto, costo y recursos disponibles." },
+            { name: "4. Desarrollar la Hoja de Ruta", description: "Crear una línea de tiempo visual con hitos, fases y recursos asignados para cada iniciativa." },
+            { name: "5. Planificar Implementación", description: "Desarrollar planes de acción detallados, asignar responsabilidades y planificar la gestión del cambio." },
+            { name: "6. Monitorear y Revisar", description: "Establecer KPIs para medir el progreso y realizar revisiones periódicas para mantener la relevancia." }
+        ],
+        consultantRoles: [
+            { challenge: "Restricciones Presupuestarias", solution: "Optimizar presupuestos, recomendar soluciones rentables (ej. Cloud) y priorizar inversiones con el mayor ROI." },
+            { challenge: "Falta de Experiencia Interna", solution: "Actuar como un recurso experto externo, proporcionar visión estratégica y facilitar capacitación personalizada al personal." },
+            { challenge: "Resistencia al Cambio", solution: "Implementar estrategias de gestión del cambio, involucrando a los empleados y comunicando los beneficios de forma transparente." },
+            { challenge: "Riesgos de Ciberseguridad", solution: "Realizar evaluaciones de vulnerabilidades y desarrollar estrategias de protección robustas (firewalls, MFA, capacitación)." }
+        ],
+        caseStudies: [
+            { empresa: "El Horno Mágico", sector: "Alimentación", desafio: "Optimizar gestión de materias primas y planificación financiera.", solucion: "Implementación de sistema ERP.", resultados: "Aumento del 40% en ventas; expansión a 2 sucursales adicionales." },
+            { empresa: "Sabores Urbanos", sector: "Alimentación", desafio: "Personalizar experiencia del cliente y aumentar lealtad.", solucion: "Adopción de sistema CRM para segmentación y promociones personalizadas.", resultados: "Incremento del 35% en clientes leales; duplicación de ingresos." },
+            { empresa: "Estrategia 360", sector: "Consultoría", desafio: "Optimizar recursos y ofrecer servicios más competitivos.", solucion: "Implementación de herramientas de BI para análisis de datos.", resultados: "Duplicación de ingresos y expansión del equipo." },
+            { empresa: "Moda Express", sector: "Retail", desafio: "Mejorar gestión de inventario y relaciones con clientes.", solucion: "Integración de sistemas ERP y CRM.", resultados: "Reducción del 20% en costos operativos; aumento del 35% en ventas." },
+            { empresa: "Mercadona", sector: "Retail", desafio: "Optimizar logística y reducir errores de inventario.", solucion: "Almacenes robotizados con consultoría de Deloitte.", resultados: "Reducción del 30% en errores de inventario; entregas más rápidas." },
+            { empresa: "Correos Express", sector: "Logística", desafio: "Reducir llamadas al call center y mejorar atención al cliente.", solucion: "Implementación de chatbot en WhatsApp (Gupshup).", resultados: "Reducción del 35% en llamadas; 92% de satisfacción del cliente." }
+        ],
+        recommendations: {
+            smes: [
+                { icon: "🚀", text: "<strong>No Retrasar la Transformación:</strong> El status quo es un riesgo. Dar el primer paso, aunque sea pequeño, es fundamental." },
+                { icon: "🌱", text: "<strong>Priorizar la Cultura y las Personas:</strong> El éxito reside en la adopción humana. Invertir en capacitación es tan crucial como la tecnología." },
+                { icon: "🤝", text: "<strong>Buscar Asesoramiento Experto:</strong> Colaborar con consultores maximiza el ROI y ayuda a evitar errores costosos." },
+                { icon: "🔗", text: "<strong>Enfocarse en la Escalabilidad:</strong> Elegir soluciones que puedan crecer con el negocio, como las basadas en la nube." },
+                { icon: "🔄", text: "<strong>Medir y Adaptar Continuamente:</strong> La transformación es un viaje. Usar KPIs para evaluar el progreso y ajustar la estrategia." }
+            ],
+            consultants: [
+                { icon: "🌐", text: "<strong>Adoptar un Enfoque Holístico:</strong> Integrar estrategia, transformación y gestión del cambio para ofrecer soluciones completas." },
+                { icon: "💼", text: "<strong>Ser un Socio Estratégico:</strong> Ir más allá de la técnica. Entender y alinear la tecnología con los objetivos de negocio." },
+                { icon: "🗣️", text: "<strong>Comunicar el Valor de Negocio:</strong> Traducir beneficios técnicos en resultados cuantificables (ahorros, ingresos, eficiencia)." },
+                { icon: "🔧", text: "<strong>Ofrecer Soluciones Personalizadas:</strong> Adaptar las recomendaciones a las necesidades y recursos específicos de cada PYME." },
+                { icon: "👨‍🏫", text: "<strong>Fomentar la Capacitación:</strong> Actuar como un evangelizador del cambio cultural y el desarrollo de habilidades digitales." }
+            ]
+        }
+    };
+
+    // --- INITIALIZATION ---
+    function init() {
+        populateITStrategyComponents();
+        populateStrategyGuide();
+        populateDigitalTransformationPillars();
+        createChallengesChart();
+        populateRoadmapProcess();
+        populateConsultantRoles();
+        populateCaseStudies();
+        populateRecommendations();
+        setupEventListeners();
+    }
+
+    // --- POPULATE CONTENT FUNCTIONS ---
+    function populateITStrategyComponents() {
+        const container = document.getElementById('it-strategy-components');
+        container.innerHTML = data.itStrategyComponents.map(c => `
+            <div class="bg-card-white p-6 rounded-lg card">
+                <div class="text-4xl mb-2 text-heading">${c.icon}</div>
+                <h4 class="text-lg font-bold text-heading">${c.name}</h4>
+                <p class="text-sub-content text-sm">${c.description}</p>
+            </div>
+        `).join('');
+    }
+
+    function populateStrategyGuide() {
+        const accordionContainer = document.getElementById('strategy-guide-accordion');
+        accordionContainer.innerHTML = data.strategyGuide.map((item, index) => `
+            <div>
+                <button class="accordion-button w-full text-left p-4 bg-dark-section text-white rounded-md flex justify-between items-center hover:bg-gray-600 transition-colors">
+                    <span class="font-bold text-lg">${item.title}</span>
+                    <span class="transform transition-transform text-white font-bold text-2xl">+</span>
+                </button>
+                <div class="accordion-content bg-main-light p-4 rounded-b-md">
+                    <p class="text-sub-content">${item.content}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function populateDigitalTransformationPillars() {
+        const container = document.getElementById('digital-transformation-pillars');
+        container.innerHTML = data.digitalTransformationPillars.map(p => `
+            <div class="flex items-center space-x-3 p-3 bg-dark-section text-white rounded-lg">
+                <span class="text-2xl">${p.icon}</span>
+                <span class="font-semibold">${p.name}</span>
+            </div>
+        `).join('');
+    }
+    
+    function populateRoadmapProcess() {
+        const container = document.getElementById('roadmap-process');
+        container.innerHTML = data.roadmapProcess.map((step, index) => `
+            <div class="mb-8 md:mb-0 md:flex-1 relative">
+                <div class="flex items-center md:flex-col md:items-center">
+                    <div class="flex-shrink-0 bg-dark-section text-white rounded-full h-8 w-8 flex items-center justify-center z-10">${index + 1}</div>
+                    <div class="ml-4 md:ml-0 md:mt-4 text-center">
+                        <h4 class="font-bold text-heading">${step.name}</h4>
+                        <p class="text-sm text-sub-content max-w-xs mx-auto">${step.description}</p>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function populateConsultantRoles() {
+        const container = document.getElementById('consultant-role');
+        container.innerHTML = data.consultantRoles.map(role => `
+            <div class="bg-card-white p-6 rounded-lg shadow-md card">
+                <h4 class="text-xl font-bold text-heading mb-2">Desafío: ${role.challenge}</h4>
+                <p class="text-sub-content"><strong class="text-heading">Solución del Consultor:</strong> ${role.solution}</p>
+            </div>
+        `).join('');
+    }
+
+    function populateCaseStudies(filter = 'Todos') {
+        const gallery = document.getElementById('case-studies-gallery');
+        const filteredCases = filter === 'Todos' ? data.caseStudies : data.caseStudies.filter(c => c.sector === filter);
+        
+        gallery.innerHTML = filteredCases.map(c => `
+            <div class="bg-card-white rounded-lg shadow-lg overflow-hidden card">
+                <div class="p-6">
+                    <p class="text-sm font-semibold text-heading">${c.sector}</p>
+                    <h4 class="text-xl font-bold mt-1 mb-2 text-heading">${c.empresa}</h4>
+                    <p class="text-sub-content mb-2"><strong class="text-heading">Desafío:</strong> ${c.desafio}</p>
+                    <p class="text-sub-content mb-4"><strong class="text-heading">Solución:</strong> ${c.solucion}</p>
+                    <div class="bg-main-light p-3 rounded-md">
+                        <p class="text-sub-content font-semibold"><strong class="text-heading">Resultado:</strong> ${c.resultados}</p>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        if (document.getElementById('case-study-filters').innerHTML === '') {
+            const sectors = ['Todos', ...new Set(data.caseStudies.map(c => c.sector))];
+            document.getElementById('case-study-filters').innerHTML = sectors.map(s => `
+                <button class="case-filter-btn px-4 py-2 text-sm font-medium rounded-full transition-colors ${s === filter ? 'bg-button-orange text-white' : 'bg-dark-section text-white hover:bg-gray-600'}">${s}</button>
+            `).join('');
+        }
+    }
+
+    function populateRecommendations() {
+        const smesList = document.querySelector('#recommendations-smes ul');
+        const consultantsList = document.querySelector('#recommendations-consultants ul');
+        
+        smesList.innerHTML = data.recommendations.smes.map(r => `
+            <li class="flex items-start">
+                <span class="text-2xl mr-4 text-heading">${r.icon}</span>
+                <span class="text-sub-content">${r.text}</span>
+            </li>
+        `).join('');
+        
+        consultantsList.innerHTML = data.recommendations.consultants.map(r => `
+            <li class="flex items-start">
+                <span class="text-2xl mr-4 text-heading">${r.icon}</span>
+                <span class="text-sub-content">${r.text}</span>
+            </li>
+        `).join('');
+    }
+
+    // --- CHART CREATION ---
+    function createChallengesChart() {
+        const ctx = document.getElementById('challengesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.smeChallenges.labels,
+                datasets: [{
+                    label: 'Nivel de Desafío Percibido',
+                    data: data.smeChallenges.data,
+                    backgroundColor: 'rgba(15, 33, 59, 0.7)', /* Azul Oscuro con opacidad */
+                    borderColor: 'rgba(15, 33, 59, 1)',    /* Azul Oscuro sólido */
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            afterBody: function(context) {
+                                const index = context[0].dataIndex;
+                                return data.smeChallenges.descriptions[index];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                            display: false
+                        }
+                    },
+                    y: {
+                         ticks: {
+                            font: {
+                                size: 12,
+                                color: '#0f213b' /* Azul Oscuro para las etiquetas del eje Y */
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // --- EVENT LISTENERS ---
+    function setupEventListeners() {
+        // Main navigation
+        const navContainer = document.getElementById('main-nav');
+        navContainer.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                const targetId = e.target.dataset.target;
+
+                navContainer.querySelector('.active').classList.remove('active');
+                e.target.classList.add('active');
+
+                document.querySelector('.content-section.active').classList.remove('active');
+                document.getElementById(targetId).classList.add('active');
+            }
+        });
+        
+        // Strategy guide accordion
+        document.getElementById('strategy-guide-accordion').addEventListener('click', e => {
+            const button = e.target.closest('.accordion-button');
+            if (button) {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('span:last-child');
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    document.querySelectorAll('.accordion-content').forEach(el => el.style.maxHeight = null);
+                    document.querySelectorAll('.accordion-button span:last-child').forEach(el => el.style.transform = 'rotate(0deg)');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            }
+        });
+
+        // Case study filters
+        document.getElementById('case-study-filters').addEventListener('click', e => {
+            if (e.target.classList.contains('case-filter-btn')) {
+                const filter = e.target.textContent;
+                populateCaseStudies(filter);
+                // Update active filter button styles
+                document.querySelectorAll('.case-filter-btn').forEach(btn => {
+                    btn.classList.remove('bg-button-orange', 'text-white');
+                    btn.classList.add('bg-dark-section', 'text-white');
+                    btn.classList.remove('hover:bg-gray-600'); /* Remove previous hover, will re-add to non-active */
+                    btn.classList.add('hover:bg-gray-600');
+                });
+                e.target.classList.remove('bg-dark-section', 'text-white');
+                e.target.classList.add('bg-button-orange', 'text-white');
+                e.target.classList.remove('hover:bg-gray-600');
+            }
+        });
+    }
+
+    init();
+});
+</script>
+</body>
+</html>
