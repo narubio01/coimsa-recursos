@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Tendencias y Mejores Prácticas en Infraestructura de TI para PYMES - COIMSA</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Colores personalizados de COIMSA */
+        :root {
+            --coimsa-blue-dark: #0f213b;
+            --coimsa-gray-dark: #4f5d75;
+            --coimsa-gray-light: #f4f4f4;
+            --coimsa-orange: #f47c47;
+            --coimsa-white: #FFFFFF;
+            --coimsa-black: #000000;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--coimsa-gray-light);
+            color: var(--coimsa-blue-dark);
+            line-height: 1.6;
+        }
+
+        .bg-coimsa-blue-dark { background-color: var(--coimsa-blue-dark); }
+        .bg-coimsa-gray-dark { background-color: var(--coimsa-gray-dark); }
+        .bg-coimsa-gray-light { background-color: var(--coimsa-gray-light); }
+        .bg-coimsa-orange { background-color: var(--coimsa-orange); }
+        .text-coimsa-blue-dark { color: var(--coimsa-blue-dark); }
+        .text-coimsa-gray-dark { color: var(--coimsa-gray-dark); }
+        .text-coimsa-orange { color: var(--coimsa-orange); }
+
+        /* Estilos específicos para la infografía */
+        .infographic-section {
+            background-color: var(--coimsa-white);
+            border-radius: 1rem; /* Rounded corners */
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .trend-item, .practice-item {
+            display: flex;
+            align-items: flex-start; /* Alinea el ícono arriba del texto si este es largo */
+            margin-bottom: 1.5rem;
+        }
+
+        .icon-box {
+            background-color: var(--coimsa-orange);
+            color: var(--coimsa-white);
+            border-radius: 9999px; /* Fully rounded for circles */
+            padding: 0.8rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            flex-shrink: 0; /* Evita que el icono se encoja */
+            margin-right: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .item-content h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+            color: var(--coimsa-blue-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .item-content p {
+            font-size: 1rem; /* text-base */
+            color: var(--coimsa-gray-dark);
+        }
+
+        .cta-button {
+            background-color: var(--coimsa-orange);
+            color: var(--coimsa-white);
+            padding: 1rem 2rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            text-decoration: none;
+            font-weight: 700; /* font-bold */
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background-color: #e06c3a; /* Un tono un poco más oscuro de naranja al pasar el ratón */
+        }
+
+        /* Líneas decorativas entre secciones (opcional, para visualización más avanzada) */
+        .divider {
+            height: 3px;
+            background-color: var(--coimsa-gray-dark);
+            width: 50%;
+            margin: 3rem auto;
+            border-radius: 5px;
+        }
+
+        /* Estilos para el footer */
+        footer {
+            background-color: var(--coimsa-blue-dark);
+            color: var(--coimsa-white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--coimsa-orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+
+    <header class="text-center mb-8">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-coimsa-blue-dark leading-tight mb-4">
+            Transformando tu Negocio: <br class="sm:hidden">Tendencias Clave y Mejores Prácticas en Infraestructura de TI para PYMES
+        </h1>
+        <p class="text-lg text-coimsa-gray-dark max-w-3xl mx-auto">
+            En COIMSA, te guiamos en la adopción de tecnologías que impulsan la eficiencia, seguridad y crecimiento de tu empresa.
+        </p>
+    </header>
+
+    <main class="max-w-6xl mx-auto">
+
+        <!-- Sección de Tendencias Clave -->
+        <section class="infographic-section">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-coimsa-orange mb-8">
+                Tendencias Clave para tu Infraestructura de TI
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Tendencia 1: Nube Híbrida -->
+                <div class="trend-item">
+                    <div class="icon-box">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>1. La Nube Híbrida como Estándar de Oro</h3>
+                        <p>Combina infraestructura local y servicios en la nube para flexibilidad, optimización de costos y mejora de la continuidad del negocio. Ideal para escalar y proteger datos sensibles.</p>
+                    </div>
+                </div>
+
+                <!-- Tendencia 2: Ciberseguridad -->
+                <div class="trend-item">
+                    <div class="icon-box">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>2. Ciberseguridad: Necesidad Imperativa</h3>
+                        <p>Protección integral de sistemas, redes y datos. Crucial para prevenir ataques costosos, mantener la reputación y asegurar el cumplimiento normativo. Los ataques a PYMES son cada vez más frecuentes.</p>
+                    </div>
+                </div>
+
+                <!-- Tendencia 3: Automatización -->
+                <div class="trend-item">
+                    <div class="icon-box">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>3. Automatización de Procesos y Operaciones de TI (AIOps Ligeras)</h3>
+                        <p>Libera a tu personal de tareas repetitivas, reduce errores humanos y acelera la resolución de problemas, permitiendo a tu equipo enfocarse en iniciativas estratégicas.</p>
+                    </div>
+                </div>
+
+                <!-- Tendencia 4: Edge Computing -->
+                <div class="trend-item">
+                    <div class="icon-box">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>4. Importancia Creciente de la Edge Computing</h3>
+                        <p>Procesa datos cerca de su origen, reduciendo la latencia y mejorando el rendimiento de aplicaciones críticas, especialmente útil para operaciones distribuidas o IoT.</p>
+                    </div>
+                </div>
+
+                <!-- Tendencia 5: Infraestructura como Código -->
+                <div class="trend-item">
+                    <div class="icon-box">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>5. Infraestructura como Código (IaC) para la Agilidad</h3>
+                        <p>Gestiona la infraestructura de TI mediante archivos de configuración, permitiendo replicar entornos, reducir errores y estandarizar despliegues de forma ágil y eficiente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Sección de Mejores Prácticas Esenciales -->
+        <section class="infographic-section">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-coimsa-orange mb-8">
+                Mejores Prácticas Esenciales para tu PYME
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Práctica 1: Evaluación y Planificación -->
+                <div class="practice-item">
+                    <div class="icon-box">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>1. Evaluación y Planificación Estratégica</h3>
+                        <p>Realiza auditorías regulares de tu infraestructura y alinea tu plan de TI con los objetivos de negocio. Tu infraestructura debe ser un activo estratégico, no un gasto.</p>
+                    </div>
+                </div>
+
+                <!-- Práctica 2: Respaldo y Recuperación -->
+                <div class="practice-item">
+                    <div class="icon-box">
+                        <i class="fas fa-save"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>2. Respaldo y Recuperación ante Desastres (DR)</h3>
+                        <p>Implementa copias de seguridad automáticas y probadas, tanto on-premise como en la nube. Un plan de DR claro es crucial para la continuidad de tu negocio.</p>
+                    </div>
+                </div>
+
+                <!-- Práctica 3: Gestión de Parches -->
+                <div class="practice-item">
+                    <div class="icon-box">
+                        <i class="fas fa-wrench"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>3. Gestión Proactiva de Parches y Actualizaciones</h3>
+                        <p>Mantén todo tu software y hardware actualizado para protegerte contra vulnerabilidades y mejorar el rendimiento de tus sistemas.</p>
+                    </div>
+                </div>
+
+                <!-- Práctica 4: Monitoreo Constante -->
+                <div class="practice-item">
+                    <div class="icon-box">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>4. Monitoreo Constante del Rendimiento y la Seguridad</h3>
+                        <p>Utiliza herramientas de monitoreo para identificar y resolver problemas de rendimiento o actividad sospechosa antes de que afecten tus operaciones.</p>
+                    </div>
+                </div>
+
+                <!-- Práctica 5: Capacitación -->
+                <div class="practice-item">
+                    <div class="icon-box">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>5. Capacitación Continua del Personal</h3>
+                        <p>Capacita a tus empleados sobre las mejores prácticas de seguridad y el uso de herramientas. El factor humano es una defensa clave contra las amenazas cibernéticas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Llamada a la Acción -->
+        <section class="infographic-section text-center bg-coimsa-blue-dark text-coimsa-white p-8 rounded-xl">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-4">
+                ¡COIMSA es tu aliado en la transformación digital!
+            </h2>
+            <p class="text-lg mb-6">
+                Enfócate en hacer crecer tu negocio, nosotros nos encargamos de tu infraestructura de TI.
+            </p>
+            <a href="https://www.coimsa.net/contacto" target="_blank" class="cta-button">
+                ¡Contáctanos Hoy Mismo!
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="mt-8">
+        <p>&copy; 2024 COIMSA. Todos los derechos reservados.</p>
+        <p>Visita nuestro sitio web: <a href="https://www.coimsa.net" target="_blank">www.coimsa.net</a></p>
+    </footer>
+
+</body>
+</html>
