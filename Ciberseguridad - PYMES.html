@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciberseguridad Esencial para PyMEs</title>
+    <style>
+        /* Definición de variables CSS para los colores de COIMSA */
+        :root {
+            --coimsa-dark-blue: #0f213b;
+            --coimsa-dark-gray: #4f5d75;
+            --coimsa-light-gray: #f4f4f4;
+            --coimsa-orange: #f47c47;
+            --coimsa-white: #FFFFFF;
+            --coimsa-black: #000000;
+        }
+
+        /* Estilos generales para el cuerpo de la infografía */
+        /* Nota: el body general de tu blog puede sobrescribir estos estilos,
+           pero la mayoría de los elementos de la infografía tienen sus propios estilos. */
+        body {
+            font-family: 'Inter', sans-serif; /* Usando Inter para una tipografía moderna */
+            line-height: 1.6;
+            color: var(--coimsa-dark-blue);
+            background-color: var(--coimsa-light-gray); /* Fondo general de la página/blog */
+            margin: 0;
+            padding: 0; /* Padding cero para que el contenedor controle el espaciado */
+        }
+
+        /* Contenedor principal de la infografía */
+        .infographic-container {
+            max-width: 800px; /* Ancho máximo para legibilidad */
+            margin: 40px auto; /* Centrar y añadir espacio vertical */
+            background-color: var(--coimsa-white);
+            border-radius: 12px; /* Esquinas más redondeadas */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+            overflow: hidden; /* Asegura que el contenido respete los bordes redondeados */
+            border: 1px solid var(--coimsa-light-gray); /* Pequeño borde para definición */
+        }
+
+        /* Sección del encabezado principal */
+        .infographic-header {
+            background-color: var(--coimsa-dark-blue);
+            color: var(--coimsa-white);
+            padding: 40px 20px; /* Más padding para impacto */
+            text-align: center;
+            font-size: 2.5em; /* Tamaño de fuente grande para el título */
+            font-weight: 800; /* Negrita extra para el título */
+            letter-spacing: -0.02em; /* Ajuste de espaciado entre letras */
+            border-radius: 12px 12px 0 0; /* Esquinas redondeadas solo arriba */
+        }
+
+        /* Subtítulo debajo del encabezado principal */
+        .infographic-subtitle {
+            background-color: var(--coimsa-dark-gray);
+            color: var(--coimsa-white);
+            padding: 20px 20px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 500;
+        }
+
+        /* Estilos para cada sección de la infografía (amenazas, medidas) */
+        .infographic-section {
+            padding: 30px 25px; /* Padding interno */
+            border-bottom: 1px solid var(--coimsa-light-gray); /* Separador sutil */
+        }
+        .infographic-section:last-of-type {
+            border-bottom: none; /* Eliminar el borde inferior de la última sección */
+        }
+
+        /* Título de cada sección */
+        .section-title {
+            color: var(--coimsa-orange);
+            font-size: 2em; /* Tamaño de fuente para títulos de sección */
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase; /* Convertir a mayúsculas */
+        }
+
+        /* Contenedor de los elementos dentro de una sección */
+        .section-content {
+            display: flex;
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea */
+            gap: 25px; /* Espacio entre los elementos */
+            justify-content: center; /* Centrar los elementos horizontalmente */
+        }
+
+        /* Estilos para cada "ítem" o punto de la infografía */
+        .item {
+            background-color: var(--coimsa-light-gray);
+            border-radius: 8px; /* Bordes redondeados */
+            padding: 20px;
+            flex: 1 1 calc(50% - 25px); /* Dos columnas en pantallas grandes, con espacio */
+            box-sizing: border-box; /* Incluye padding y borde en el ancho */
+            min-width: 300px; /* Ancho mínimo para evitar que se hagan demasiado pequeños */
+            display: flex;
+            align-items: flex-start; /* Alinea el contenido al inicio */
+            gap: 15px; /* Espacio entre el número y el texto */
+            transition: transform 0.2s ease-in-out; /* Animación al pasar el mouse */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+        }
+        .item:hover {
+            transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para el número de cada ítem */
+        .item-number {
+            background-color: var(--coimsa-orange);
+            color: var(--coimsa-white);
+            border-radius: 50%; /* Forma circular */
+            width: 40px; /* Tamaño del círculo */
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            flex-shrink: 0; /* Evita que el número se encoja */
+            font-size: 1.2em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para el número */
+        }
+
+        /* Contenedor del texto de cada ítem */
+        .item-text {
+            flex-grow: 1; /* Permite que el texto ocupe el espacio restante */
+        }
+        .item-text strong {
+            color: var(--coimsa-dark-blue);
+            font-size: 1.25em; /* Tamaño de fuente para el título del ítem */
+            display: block; /* Asegura que ocupe toda la línea */
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .item-text p {
+            margin: 0;
+            color: var(--coimsa-dark-gray);
+            font-size: 0.95em;
+        }
+
+        /* Pie de página de la infografía */
+        .footer {
+            background-color: var(--coimsa-dark-blue);
+            color: var(--coimsa-white);
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 1.15em;
+            border-radius: 0 0 12px 12px; /* Esquinas redondeadas solo abajo */
+            font-weight: 500;
+        }
+        .footer a {
+            color: var(--coimsa-orange);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.2s ease-in-out;
+        }
+        .footer a:hover {
+            color: var(--coimsa-white); /* Cambia a blanco al pasar el mouse */
+            text-decoration: underline;
+        }
+
+        /* Media Queries para responsividad */
+        @media (max-width: 768px) {
+            .infographic-header {
+                font-size: 2em;
+                padding: 30px 15px;
+            }
+            .infographic-subtitle {
+                font-size: 1.1em;
+                padding: 15px;
+            }
+            .section-title {
+                font-size: 1.7em;
+            }
+            .item {
+                flex: 1 1 calc(100% - 25px); /* Una columna en tablets y móviles */
+                min-width: unset; /* Reiniciar el mínimo */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .infographic-container {
+                margin: 20px auto;
+                border-radius: 0; /* Sin bordes redondeados en pantallas muy pequeñas */
+                box-shadow: none; /* Sin sombra en pantallas muy pequeñas */
+            }
+            .infographic-header, .infographic-subtitle, .footer {
+                border-radius: 0; /* Sin bordes redondeados */
+            }
+            .infographic-header {
+                font-size: 1.6em;
+                padding: 25px 10px;
+            }
+            .infographic-subtitle {
+                font-size: 1em;
+                padding: 10px;
+            }
+            .section-title {
+                font-size: 1.4em;
+                margin-bottom: 20px;
+            }
+            .infographic-section {
+                padding: 20px 15px;
+            }
+            .item {
+                padding: 15px;
+                gap: 10px;
+            }
+            .item-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1em;
+            }
+            .item-text strong {
+                font-size: 1.1em;
+            }
+            .item-text p {
+                font-size: 0.9em;
+            }
+            .footer {
+                font-size: 1em;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic-container">
+        <div class="infographic-header">
+            Ciberseguridad Esencial <br> para tu PyME
+        </div>
+        <div class="infographic-subtitle">
+            Protege tu negocio en el mundo digital: Amenazas y Soluciones Clave
+        </div>
+
+        <div class="infographic-section">
+            <div class="section-title">Amenazas Comunes</div>
+            <div class="section-content">
+                <div class="item">
+                    <div class="item-number">1</div>
+                    <div class="item-text">
+                        <strong>Phishing y Spear Phishing</strong>
+                        <p>Correos electrónicos fraudulentos para engañar a tus empleados y robar información confidencial o instalar software malicioso.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-number">2</div>
+                    <div class="item-text">
+                        <strong>Ransomware</strong>
+                        <p>Software malicioso que encripta tus archivos y sistemas, exigiendo un rescate para restaurar el acceso. Puede paralizar tu operación.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-number">3</div>
+                    <div class="item-text">
+                        <strong>Malware (Virus, Troyanos, Spyware)</strong>
+                        <p>Software diseñado para dañar, deshabilitar o acceder sin autorización a sistemas informáticos, comprometiendo la integridad de tus datos.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-number">4</div>
+                    <div class="item-text">
+                        <strong>Vulnerabilidades en Software y Hardware</strong>
+                        <p>Fallos de seguridad en programas o dispositivos que los ciberdelincuentes pueden explotar para obtener acceso no autorizado a tu red.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="infographic-section">
+            <div class="section-title">Medidas Clave de Protección</div>
+            <div class="section-content">
+                <div class="item">
+                    <div class="item-number">1</div>
+                    <div class="item-text">
+                        <strong>Conciencia y Capacitación de Empleados</strong>
+                        <p>Educa a tu equipo sobre cómo identificar amenazas (ej. phishing) y fomenta hábitos de seguridad digital.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-number">2</div>
+                    <div class="item-text">
+                        <strong>Contraseñas Fuertes y MFA</strong>
+                        <p>Implementa políticas de contraseñas complejas y utiliza la Autenticación Multifactor (MFA) en todos los accesos críticos.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-number">3</div>
+                    <div class="item-text">
+                        <strong>Copias de Seguridad (Backups) Regulares</strong>
+                        <p>Realiza y prueba copias de seguridad de tus datos importantes de forma periódica, preferiblemente en la nube y localmente.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-number">4</div>
+                    <div class="item-text">
+                        <strong>Actualizaciones de Software y Parches</strong>
+                        <p>Mantén todos tus sistemas operativos, aplicaciones y software de seguridad actualizados para corregir vulnerabilidades conocidas.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-number">5</div>
+                    <div class="item-text">
+                        <strong>Firewall y Antivirus/Antimalware</strong>
+                        <p>Instala soluciones robustas de seguridad de red y endpoint para proteger todos los dispositivos de tu empresa contra amenazas.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-number">6</div>
+                    <div class="item-text">
+                        <strong>Plan de Respuesta a Incidentes</strong>
+                        <p>Desarrolla y practica un plan claro sobre qué hacer en caso de un ataque cibernético para minimizar el impacto y la recuperación.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            ¿Necesitas ayuda con la ciberseguridad de tu PyME? <br>
+            <a href="https://www.coimsa.net/contacto" target="_blank" rel="noopener noreferrer">Contacta a COIMSA.net hoy mismo</a>
+        </div>
+    </div>
+</body>
+</html>
