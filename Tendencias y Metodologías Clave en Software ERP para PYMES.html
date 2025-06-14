@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: ERP para PYMES - Tendencias y Metodologías Exitosas - COIMSA</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Colores personalizados de COIMSA */
+        :root {
+            --coimsa-blue-dark: #0f213b;
+            --coimsa-gray-dark: #4f5d75;
+            --coimsa-gray-light: #f4f4f4;
+            --coimsa-orange: #f47c47;
+            --coimsa-white: #FFFFFF;
+            --coimsa-black: #000000;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--coimsa-gray-light);
+            color: var(--coimsa-blue-dark);
+            line-height: 1.6;
+        }
+
+        .bg-coimsa-blue-dark { background-color: var(--coimsa-blue-dark); }
+        .bg-coimsa-gray-dark { background-color: var(--coimsa-gray-dark); }
+        .bg-coimsa-gray-light { background-color: var(--coimsa-gray-light); }
+        .bg-coimsa-orange { background-color: var(--coimsa-orange); }
+        .text-coimsa-blue-dark { color: var(--coimsa-blue-dark); }
+        .text-coimsa-gray-dark { color: var(--coimsa-gray-dark); }
+        .text-coimsa-orange { color: var(--coimsa-orange); }
+
+        /* Estilos específicos para la infografía */
+        .infographic-section {
+            background-color: var(--coimsa-white);
+            border-radius: 1rem; /* Rounded corners */
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .item {
+            display: flex;
+            align-items: flex-start; /* Alinea el ícono arriba del texto si este es largo */
+            margin-bottom: 1.5rem;
+        }
+
+        .icon-box {
+            background-color: var(--coimsa-orange);
+            color: var(--coimsa-white);
+            border-radius: 9999px; /* Fully rounded for circles */
+            padding: 0.8rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            flex-shrink: 0; /* Evita que el icono se encoja */
+            margin-right: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .item-content h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+            color: var(--coimsa-blue-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .item-content p {
+            font-size: 1rem; /* text-base */
+            color: var(--coimsa-gray-dark);
+        }
+
+        .cta-button {
+            background-color: var(--coimsa-orange);
+            color: var(--coimsa-white);
+            padding: 1rem 2rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            text-decoration: none;
+            font-weight: 700; /* font-bold */
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background-color: #e06c3a; /* Un tono un poco más oscuro de naranja al pasar el ratón */
+        }
+
+        /* Líneas decorativas entre secciones (opcional, para visualización más avanzada) */
+        .divider {
+            height: 3px;
+            background-color: var(--coimsa-gray-dark);
+            width: 50%;
+            margin: 3rem auto;
+            border-radius: 5px;
+        }
+
+        /* Estilos para el footer */
+        footer {
+            background-color: var(--coimsa-blue-dark);
+            color: var(--coimsa-white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--coimsa-orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+
+    <header class="text-center mb-8 bg-coimsa-white p-8 rounded-b-xl">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-coimsa-blue-dark leading-tight mb-4">
+            Transformando tu Gestión: <br class="sm:hidden">Tendencias y Metodologías Clave en Software ERP para PYMES
+        </h1>
+        <p class="text-lg text-coimsa-gray-dark max-w-3xl mx-auto">
+            En COIMSA, te guiamos en la adopción de tecnologías que impulsan la eficiencia, seguridad y crecimiento de tu empresa.
+        </p>
+    </header>
+
+    <main class="max-w-6xl mx-auto">
+
+        <!-- Sección de Tendencias Clave -->
+        <section class="infographic-section">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-coimsa-orange mb-8">
+                Tendencias Clave en Software ERP para PYMES
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Tendencia 1: ERP en la Nube (SaaS ERP) -->
+                <div class="item">
+                    <div class="icon-box">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>1. ERP en la Nube (SaaS ERP)</h3>
+                        <p>Reduce costos, ofrece escalabilidad instantánea, acceso global y actualizaciones automáticas. Te permite enfocarte en tu negocio principal, no en la TI.</p>
+                    </div>
+                </div>
+
+                <!-- Tendencia 2: Integración Profunda -->
+                <div class="item">
+                    <div class="icon-box">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>2. Integración Profunda y Ecosistemas Conectados</h3>
+                        <p>Unifica datos de CRM, eCommerce, BI. Elimina silos, automatiza flujos y mejora la toma de decisiones al centralizar tu información.</p>
+                    </div>
+                </div>
+
+                <!-- Tendencia 3: Movilidad y Acceso en Tiempo Real -->
+                <div class="item">
+                    <div class="icon-box">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>3. Movilidad y Acceso en Tiempo Real</h3>
+                        <p>Accede a tu ERP desde cualquier dispositivo móvil. Potencia la productividad de tus equipos de ventas, servicio al cliente y gerencia fuera de la oficina.</p>
+                    </div>
+                </div>
+
+                <!-- Tendencia 4: IA y Automatización -->
+                <div class="item">
+                    <div class="icon-box">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>4. Inteligencia Artificial (IA) y Automatización en ERP</h3>
+                        <p>Incorpora IA/ML para automatizar tareas repetitivas, predecir tendencias (ej. demanda de inventario) y optimizar procesos, liberando tiempo valioso de tu personal.</p>
+                    </div>
+                </div>
+
+                <!-- Tendencia 5: Experiencia de Usuario (UX) Mejorada -->
+                <div class="item">
+                    <div class="icon-box">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>5. Experiencia de Usuario (UX) Mejorada</h3>
+                        <p>Interfaces intuitivas, personalizables y agradables. Menor curva de aprendizaje, mayor satisfacción y productividad del empleado, clave para una adopción exitosa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Sección de Metodologías Exitosas -->
+        <section class="infographic-section">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-coimsa-orange mb-8">
+                Metodologías Exitosas de Implementación de ERP
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Metodología 1: Planificación Detallada -->
+                <div class="item">
+                    <div class="icon-box">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>1. Planificación Detallada y Alcance Claro</h3>
+                        <p>Define objetivos, procesos y recursos con precisión. Evita la "deriva del alcance" y asegura que el proyecto se alinee con tus metas de negocio.</p>
+                    </div>
+                </div>
+
+                <!-- Metodología 2: Gestión del Cambio -->
+                <div class="item">
+                    <div class="icon-box">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>2. Gestión del Cambio y Comunicación Continua</h3>
+                        <p>Involucra a los usuarios desde el principio. Comunica beneficios y aborda inquietudes para minimizar la resistencia y asegurar la adopción.</p>
+                    </div>
+                </div>
+
+                <!-- Metodología 3: Capacitación Exhaustiva -->
+                <div class="item">
+                    <div class="icon-box">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>3. Capacitación Exhaustiva y Personalizada</h3>
+                        <p>Tus empleados necesitan saber cómo usar el ERP eficazmente. La capacitación práctica y adaptada a roles es vital para maximizar el uso del sistema.</p>
+                    </div>
+                </div>
+
+                <!-- Metodología 4: Migración de Datos -->
+                <div class="item">
+                    <div class="icon-box">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>4. Migración de Datos Impecable</h3>
+                        <p>Transfiere información existente con limpieza, validación y planificación meticulosa. Crucial para la integridad, precisión y seguridad de tu información vital.</p>
+                    </div>
+                </div>
+
+                <!-- Metodología 5: Fases de Pruebas Rigurosas -->
+                <div class="item">
+                    <div class="icon-box">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>5. Fases de Pruebas Rigurosas y Retroalimentación</h3>
+                        <p>Prueba el sistema a fondo antes del lanzamiento. Identifica y corrige errores para garantizar que funcione según lo esperado, evitando problemas en vivo.</p>
+                    </div>
+                </div>
+
+                <!-- Metodología 6: Soporte y Optimización -->
+                <div class="item">
+                    <div class="icon-box">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="item-content">
+                        <h3>6. Soporte Post-Implementación y Optimización Continua</h3>
+                        <p>El ERP evoluciona con tu negocio. Un soporte robusto y un plan de mejora continua aseguran que siga siendo una herramienta valiosa a largo plazo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Llamada a la Acción -->
+        <section class="infographic-section text-center bg-coimsa-blue-dark text-coimsa-white p-8 rounded-xl">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-4">
+                ¡COIMSA es tu aliado estratégico en TI!
+            </h2>
+            <p class="text-lg mb-6">
+                Enfócate en hacer crecer tu negocio, nosotros nos encargamos de tu ERP.
+            </p>
+            <a href="https://www.coimsa.net" target="_blank" class="cta-button">
+                ¡Contáctanos Hoy Mismo!
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="mt-8">
+        <p>&copy; 2024 COIMSA. Todos los derechos reservados.</p>
+        <p>Visita nuestro sitio web: <a href="https://www.coimsa.net" target="_blank">www.coimsa.net</a></p>
+    </footer>
+
+</body>
+</html>
